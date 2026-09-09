@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DevOps Book Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <div class="logo">
+            📚 DevOps Book Store
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for books, authors..."
+                oninput="filterBooks()"
+            >
+
+            <button onclick="filterBooks()">
+                🔍 Search
+            </button>
+
+        </div>
+
+        <div class="cart-icon">
+            🛒 Cart
+            <span id="cartCount">0</span>
+        </div>
+
+    </header>
+
+
+    <!-- Categories -->
+
+    <nav class="categories">
+
+        <button onclick="selectCategory('All')">
+            All
+        </button>
+
+        <button onclick="selectCategory('Programming')">
+            Programming
+        </button>
+
+        <button onclick="selectCategory('DevOps')">
+            DevOps
+        </button>
+
+        <button onclick="selectCategory('Cloud Computing')">
+            Cloud
+        </button>
+
+        <button onclick="selectCategory('Web Development')">
+            Web Development
+        </button>
+
+        <button onclick="selectCategory('Database')">
+            Database
+        </button>
+
+        <button onclick="selectCategory('Networking')">
+            Networking
+        </button>
+
+        <button onclick="selectCategory('Cybersecurity')">
+            Cybersecurity
+        </button>
+
+        <button onclick="selectCategory('AI & Machine Learning')">
+            AI & ML
+        </button>
+
+    </nav>
+
+
+    <!-- Main content -->
+
+    <main>
+
+        <div class="page-title">
+
+            <div>
+                <h1>Books</h1>
+                <p id="bookCount">Showing books</p>
+            </div>
+
+            <div class="sort-box">
+
+                <label for="sortSelect">
+                    Sort:
+                </label>
+
+                <select id="sortSelect" onchange="filterBooks()">
+
+                    <option value="default">
+                        Relevance
+                    </option>
+
+                    <option value="price-low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price-high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="rating">
+                        Customer Rating
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="content">
+
+            <!-- Filters -->
+
+            <aside class="filters">
+
+                <h2>Filters</h2>
+
+                <hr>
+
+                <h3>Category</h3>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Programming"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    Programming
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="DevOps"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    DevOps
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Cloud Computing"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    Cloud Computing
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Web Development"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    Web Development
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Database"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    Database
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Networking"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    Networking
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="Cybersecurity"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    Cybersecurity
+                </label>
+
+                <label>
+                    <input
+                        type="checkbox"
+                        value="AI & Machine Learning"
+                        class="category-filter"
+                        onchange="filterBooks()"
+                    >
+                    AI & Machine Learning
+                </label>
+
+
+                <hr>
+
+
+                <h3>Price</h3>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="all"
+                        checked
+                        onchange="filterBooks()"
+                    >
+                    All
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="under300"
+                        onchange="filterBooks()"
+                    >
+                    Under ₹300
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="300-500"
+                        onchange="filterBooks()"
+                    >
+                    ₹300 - ₹500
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="price"
+                        value="above500"
+                        onchange="filterBooks()"
+                    >
+                    Above ₹500
+                </label>
+
+            </aside>
+
+
+            <!-- Books -->
+
+            <section>
+
+                <div
+                    id="bookContainer"
+                    class="book-container"
+                >
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- Cart -->
+
+        <section class="cart-section">
+
+            <h2>🛒 Your Cart</h2>
+
+            <ul id="cart"></ul>
+
+            <h3>
+                Total: ₹<span id="total">0</span>
+            </h3>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
