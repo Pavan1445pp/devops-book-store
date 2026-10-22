@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'devops-book-store'
+        CONTAINER_NAME = 'bookstore-container'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME:$BUILD_NUMBER -t $IMAGE_NAME:latest .'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    docker rm -f $CONTAINER_NAME || true
+                    docker run -d -p 8000:80 --restart unless-stopped \
+                        --name $CONTAINER_NAME $IMAGE_NAME:latest
+                '''
+            }
+        }
+
+        stage('Verify') {
+            steps {
+                sh 'sleep 3 && curl -f http://localhost:8000'
+            }
+        }
+    }
+
+    post {
+        success { echo 'Deployed successfully' }
+        failure { echo 'Pipeline failed, check the logs above' }
+    }
+}
