@@ -46,5 +46,5 @@ jobs:
             docker run -d \
               --name bookstore-container \
               --restart unless-stopped \
-              -p 80:80 \
+              -p 8800:80 \
               ${{ secrets.DOCKERHUB_USERNAME }}/devops-book-store:latest
