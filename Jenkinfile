@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'devops-book-store'
+        IMAGE_NAME = 'drvops-book-store'
         CONTAINER_NAME = 'bookstore-container'
     }
 
